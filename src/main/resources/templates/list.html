@@ -5,7 +5,7 @@
     <title>List All Persons</title>
 </head>
 <body>
-
+<a th:href="@{/form}">Create New Person</a>
 <table>
     <thead>
     <tr>
@@ -13,6 +13,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Number</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -21,6 +22,11 @@
         <td th:text="${person.name}"></td>
         <td th:text="${person.email}"></td>
         <td th:text="${person.number}"></td>
+        <th>
+
+            <a th:href="@{/updatePerson/{id}(id=${person.id})}">Update</a>
+            <a th:href="@{/deletePerson/{id}(id=${person.id})}">Delete</a>
+        </th>
     </tr>
     </tbody>
 </table>

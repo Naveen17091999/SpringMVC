@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -35,5 +36,17 @@ public class PersonController {
     public String getAllPersons(Model model){
         model.addAttribute("persons", repository.findAll());
         return "list";
+    }
+
+    @GetMapping("/updatePerson/{id}")
+    public String updatePerson(@PathVariable long id, Model model){
+        model.addAttribute("person", repository.findById(id));
+        return "updatePerson";
+    }
+
+    @GetMapping("/deletePerson/{id}")
+    public String deletePerson(@PathVariable long id){
+        repository.deleteById(id);
+        return "redirect:/listAllPerson";
     }
 }
